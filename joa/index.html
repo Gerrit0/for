@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Joa</title>
+
+    <style>
+        #input, #output {
+            width: 48vw;
+            height: 98vh;
+        }
+    </style>
+</head>
+<body>
+    <textarea id="input" placeholder="Paste in your source column here"></textarea>
+    <textarea id="output" placeholder="Copy the extracted IDs here"></textarea>
+
+    <script>
+        const inputEl = document.querySelector('#input')
+        const outputEl = document.querySelector('#output')
+        inputEl.addEventListener('input', () => {
+            const lines = []
+            for (const line of inputEl.value.split('\n')) {
+                const match = /(TF|F|E)[0-9]{3}/.exec(line)
+                if (match) {
+                    lines.push(match[0])
+                } else {
+                    lines.push('')
+                }
+            }
+            outputEl.value = lines.join('\n')
+        })
+    </script>
+</body>
+</html>
