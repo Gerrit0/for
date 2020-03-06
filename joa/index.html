@@ -22,9 +22,9 @@
         inputEl.addEventListener('input', () => {
             const lines = []
             for (const line of inputEl.value.split('\n')) {
-                const match = /(TF|F|E)[0-9]{3}/.exec(line)
+                const match = /(TF|TE|F|E)\s*(\d{2,4})/.exec(line)
                 if (match) {
-                    lines.push(match[0])
+                    lines.push(match[1] + match[2])
                 } else {
                     lines.push('')
                 }
