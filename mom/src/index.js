@@ -2,7 +2,11 @@
 
 /** @type {[string, string, (x: string) => string][]} */
 const tools = [
-    ['Unique', 'Enter lines', value => Array.from(new Set(value.split('\n'))).join('\n') ]
+    ['Unique', 'Enter lines', value => {
+        const unique = new Set(value.split('\n'))
+        unique.delete('')
+        return Array.from(unique).join('\n')
+    }]
 ]
 
 let transformFn = tools[0][2]
