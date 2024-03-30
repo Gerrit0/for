@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Credit Statement Export</title>
+        <style>
+            main {
+                margin: auto;
+                max-width: 800px;
+            }
+        </style>
+        <script
+            type="module"
+            src="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.0.379/build/pdf.min.mjs"
+        ></script>
+    </head>
+    <body>
+        <main>
+            <h1>Credit Statement Parser</h1>
+            <p>
+                This tool attempts to parse credit statements from Community
+                Banks of Colorado into a CSV with all transactions. It is
+                heavily dependent on the PDF format, so will likely produce bad
+                data if any format changes.
+            </p>
+
+            <p>
+                Further, the PDF provided by that bank is truly not designed for
+                parsing. The "Notation" column will be copied into the
+                description, and some credited amounts marked with "CR" are not
+                properly detected, so the amounts in the generated CSV may not
+                be negated as intended.
+            </p>
+
+            <p>
+                The produced CSV will include a section which attempts to
+                perform validation for any transactions, but manual review to
+                ensure no transactions were missed is still recommended.
+            </p>
+
+            <h2>Step 1: Choose a statement PDF</h2>
+            <input type="file" pattern="*.pdf" disabled id="files" />
+
+            <h2>Step 2: Review any logs</h2>
+            <ul id="logs"></ul>
+
+            <h2>Step 3: Download result CSV</h2>
+            <button disabled id="download">Download</button>
+
+            <div id="result"></div>
+        </main>
+        <script src="dist/bundle.js" type="module"></script>
+    </body>
+</html>

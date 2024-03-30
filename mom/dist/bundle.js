@@ -1,1 +1,39 @@
-!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=0)}([function(e,t){const n=[["Unique","Enter lines",e=>{const t=new Set(e.split("\n"));return t.delete(""),Array.from(t).join("\n")}]];let r=n[0][2];const o=document.querySelector("select"),u=document.querySelector(".left textarea"),i=document.querySelector(".right"),c=document.querySelector("button");o.addEventListener("input",()=>{r=n.find(e=>e[0]===o.textContent)[2],l()}),u.addEventListener("input",l),c.addEventListener("click",()=>{navigator.clipboard.writeText(i.innerText).catch(console.error),c.textContent="Copied!",setTimeout(()=>c.textContent="Copy",750)});for(const e of n){o.appendChild(document.createElement("option")).textContent=e[0],u.placeholder=e[1]}function l(){try{i.innerText=r(u.value)}catch(e){i.innerText="Error: "+e.message}}}]);
+// mom/src/index.ts
+var tools = [
+  [
+    "Unique",
+    "Enter lines",
+    (value) => {
+      const unique = new Set(value.split("\n"));
+      unique.delete("");
+      return Array.from(unique).join("\n");
+    }
+  ]
+];
+var transformFn = tools[0][2];
+var dropdown = document.querySelector("select");
+var left = document.querySelector(".left textarea");
+var right = document.querySelector(".right");
+var copyButton = document.querySelector("button");
+dropdown.addEventListener("input", () => {
+  transformFn = tools.find((tool) => tool[0] === dropdown.textContent)[2];
+  transform();
+});
+left.addEventListener("input", transform);
+copyButton.addEventListener("click", () => {
+  navigator.clipboard.writeText(right.innerText).catch(console.error);
+  copyButton.textContent = "Copied!";
+  setTimeout(() => copyButton.textContent = "Copy", 750);
+});
+for (const tool of tools) {
+  const option = dropdown.appendChild(document.createElement("option"));
+  option.textContent = tool[0];
+  left.placeholder = tool[1];
+}
+function transform() {
+  try {
+    right.innerText = transformFn(left.value);
+  } catch (err) {
+    right.innerText = `Error: ${err.message}`;
+  }
+}

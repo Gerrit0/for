@@ -2,14 +2,18 @@
   "name": "for",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "repository": "https://github.com/Gerrit0/for.git",
   "author": "Gerrit Birkeland <gerrit@gerritbirkeland.com>",
   "license": "MIT",
   "dependencies": {
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12"
+    "csv-stringify": "^6.4.6",
+    "esbuild": "^0.20.2",
+    "http-server": "^14.1.1",
+    "pdfjs-dist": "^4.0.379"
   },
   "scripts": {
-    "build": "webpack -c --mode production"
+    "start": "http-server",
+    "build": "node build.js"
   }
 }
