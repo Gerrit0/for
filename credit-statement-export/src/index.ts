@@ -35,6 +35,7 @@ function log(message: string | Error) {
 }
 
 input.addEventListener("change", () => {
+    logs.innerHTML = "";
     if (downloadListener) {
         download.disabled = true;
         download.removeEventListener("click", downloadListener);

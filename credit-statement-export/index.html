@@ -39,8 +39,13 @@
                 ensure no transactions were missed is still recommended.
             </p>
 
+            <p>
+                All processing is done in your browser, no data is uploaded to
+                any server.
+            </p>
+
             <h2>Step 1: Choose a statement PDF</h2>
-            <input type="file" pattern="*.pdf" disabled id="files" />
+            <input type="file" accept=".pdf" disabled id="files" />
 
             <h2>Step 2: Review any logs</h2>
             <ul id="logs"></ul>
@@ -48,7 +53,10 @@
             <h2>Step 3: Download result CSV</h2>
             <button disabled id="download">Download</button>
 
-            <div id="result"></div>
+            <details>
+                <summary>Preview CSV</summary>
+                <div id="result"></div>
+            </details>
         </main>
         <script src="dist/bundle.js" type="module"></script>
     </body>

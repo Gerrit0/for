@@ -27,6 +27,7 @@ function log(message) {
   }
 }
 input.addEventListener("change", () => {
+  logs.innerHTML = "";
   if (downloadListener) {
     download.disabled = true;
     download.removeEventListener("click", downloadListener);
@@ -75,7 +76,6 @@ async function getAllText(file) {
   const filtered = allTexts.filter(
     (t) => !IGNORED_TEXTS.has(t) && !/^\s+$/.test(t)
   );
-  window.allTexts = filtered;
   return filtered;
 }
 function parseSection(section) {
